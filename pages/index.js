@@ -2,10 +2,28 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
+import { postFirebaseCrashLogsapi } from "@/apiFunctions/POST/postFirebaseCrashLogsapi";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const onPostData = () => {
+    let model = {
+      userId: 1,
+      fileName: "fileName",
+      lineNo: 1,
+      column: 1,
+      device: "iphone",
+      model: "12",
+      isPhysicalDevice: true,
+      deviceType: 1,
+    };
+    postFirebaseCrashLogsapi(model, "/api/postFirebaseCrashLogs", "POST").then(
+      (res) => {
+        console.log(res);
+      }
+    );
+  };
   return (
     <>
       <Head>
@@ -24,9 +42,9 @@ export default function Home() {
             height={37}
             priority
           />
-
-          Test
         </div>
+
+        <button onClick={onPostData}>onPostData</button>
       </main>
     </>
   );
