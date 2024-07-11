@@ -29,7 +29,7 @@ async function handler(req, res) {
         deviceType: deviceType,
       });
 
-      res.status(200).json({
+      res.status(200).send({
         message: "Crash Logged",
         errorState: false,
         data: result,
